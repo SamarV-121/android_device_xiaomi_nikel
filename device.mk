@@ -78,14 +78,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=1
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0
 
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true
-
-PRODUCT_PACKAGES += \
-    fs_config_files
-
 # Dalvik/HWUI
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
