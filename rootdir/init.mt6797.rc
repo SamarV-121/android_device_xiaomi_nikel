@@ -41,6 +41,10 @@ on post-fs
     mkdir /nvdata/media  0770 media audio
     restorecon_recursive /nvdata
 
+    # Workaround for old nvram blobs
+    mkdir /dev/block/platform/mtk-msdc.0/by-name 0755 root system
+    symlink /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvram /dev/block/platform/mtk-msdc.0/by-name/nvram
+    symlink /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/proinfo /dev/block/platform/mtk-msdc.0/by-name/proinfo																												
     # Wifi
     mknod /dev/wmtWifi c 153 0
     chmod 0660 /dev/wmtWifi
@@ -137,6 +141,15 @@ on post-fs-data
     chmod 0660 /dev/als_ps
     chmod 0660 /dev/gyroscope
     chmod 0660 /dev/aal_als
+    chmod 0660 /dev/m_batch_misc
+	chmod 0660 /dev/humidity
+	chmod 0660 /dev/barometer
+    chmod 0660 /sys/devices/platform/msensor/driver/cpsopmode
+    chmod 0660 /sys/devices/platform/msensor/driver/cpsreptxy
+    chmod 0660 /sys/devices/platform/msensor/driver/cpsreptz
+    chmod 0660 /sys/devices/platform/gsensor/driver/cpsopmode
+    chmod 0660 /sys/devices/platform/gsensor/driver/cpsrange
+    chmod 0660 /sys/devices/platform/gsensor/driver/cpsbandwidth															
 
     chown system system /dev/hwmsensor
     chown system system /dev/msensor
@@ -300,22 +313,23 @@ on post-fs-data
 
     # Camera
     chmod 0660 /dev/camera-isp
-    chmod 0660 /dev/camera-dpe
+							  
     chmod 0660 /dev/camera-fdvt
     chmod 0660 /dev/kd_camera_hw
     chmod 0660 /dev/kd_camera_flashlight
     chmod 0660 /dev/kd_camera_hw_bus2
+    chmod 0660 /dev/DW9714AF
     chmod 0660 /dev/CAM_CAL_DRV
-    chmod 0660 /dev/MAINAF
+						  
 
     chown system camera /dev/camera-isp
-    chown system camera /dev/camera-dpe
+									   
     chown system camera /dev/camera-fdvt
     chown system camera /dev/kd_camera_hw
     chown system camera /dev/kd_camera_flashlight
     chown system camera /dev/kd_camera_hw_bus2
+    chown system camera /dev/DW9714AF
     chown system camera /dev/CAM_CAL_DRV
-    chown system camera /dev/MAINAF
 
     # SMI
     chmod 0660 /dev/MTK_SMI
@@ -493,7 +507,7 @@ on boot
 on property:ro.hall.sensor.enabled=1
     write /sys/hall_enabler/enable 1
 
-on property:ro.board.platform=mt6753
+on property:ro.board.platform=mt6797
     chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1300000
