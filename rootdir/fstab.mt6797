@@ -11,5 +11,5 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvdata	/nvdata		ext4	noatime,nosuid,nodev,noauto_da_alloc,discard        wait,check,autoformat
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp	/persistent     emmc	defaults	defaults
 
-/devices/mtk-msdc.0/11240000.MSDC1*  	auto      auto      defaults        voldmanaged=sdcard1:auto,encryptable=userdata
-/devices/platform/mt_usb*		auto      vfat      defaults        voldmanaged=usb:auto
+/dev/block/platform/mtk-msdc.0/11240000.MSDC1*  	auto      auto      defaults        voldmanaged=sdcard1:auto,encryptable=userdata
+/dev/block/platform/mt_usb*		auto      vfat      defaults        voldmanaged=usb:auto
